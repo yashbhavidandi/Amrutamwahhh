@@ -1,0 +1,722 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background-color: #f0f8ff; /* AliceBlue background for a snowy feel */
+  }
+  
+  /* ----- Background Particles (Snowflakes) ----- */
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .particle {
+    position: absolute;
+    font-size: 24px; /* Slightly larger for snowflakes */
+    opacity: 0.8;
+    /* Changed animation to fall downwards */
+    animation: snowfall linear infinite;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+  
+  @keyframes snowfall {
+      0% {
+          transform: translateY(-10vh) translateX(0) rotate(0deg);
+          opacity: 1;
+      }
+      100% {
+          transform: translateY(100vh) translateX(20px) rotate(360deg);
+          opacity: 0.3;
+      }
+  }
+  
+  
+  /* ----- Hero Section ----- */
+  .hero {
+    min-height: 100vh;
+    /* Icy Blue gradient */
+    background: linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 50%, #81d4fa 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Subtle frost overlay pattern */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .hero-content {
+    text-align: center;
+    z-index: 3;
+    position: relative;
+    padding: 0 20px;
+    /* Push content slightly right to make room for snowman on wider screens */
+    margin-left:40px;
+  }
+  
+  /* CSS Snowman Figurine */
+  /* ----- CSS Snowman Figurine (FIXED) ----- */
+.snowman-container {
+    position: absolute;
+    left: 5%;
+    bottom: 15%;
+    z-index: 2;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    animation: gentleRock 4s ease-in-out infinite;
+}
+
+.snowman {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center;    /* Centers items horizontally */
+}
+
+@keyframes gentleRock {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+.snowman .snow-body {
+    background: linear-gradient(to right, #ffffff, #e6e6e6);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1);
+}
+
+/* Head (Top) */
+.snowman .top { 
+    width: 70px; 
+    height: 70px; 
+    z-index: 3; /* Sits on top of everything */
+}
+
+/* Middle Body */
+.snowman .middle { 
+    width: 90px; 
+    height: 90px; 
+    margin-top: -20px; /* Pulls it up to connect with head */
+    z-index: 2; /* Sits behind head */
+}
+
+/* Bottom Body */
+.snowman .bottom { 
+    width: 120px; 
+    height: 120px; 
+    margin-top: -25px; /* Pulls it up to connect with middle */
+    z-index: 1; /* Sits behind everything */
+}
+
+/* Face Details */
+.snow-eye {
+    width: 8px; height: 8px; background: #333; border-radius: 50%; position: absolute; top: 25px;
+}
+.snow-eye.left { left: 20px; }
+.snow-eye.right { right: 20px; }
+
+.snow-nose {
+    width: 0; height: 0; 
+    border-left: 5px solid transparent; 
+    border-right: 5px solid transparent; 
+    border-bottom: 15px solid #ff6b6b; 
+    position: absolute; top: 35px; left: 30px; 
+    transform: rotate(90deg);
+}
+
+/* Hat Styling */
+.snow-hat {
+    position: relative;
+    width: 60px; 
+    height: 10px; 
+    background: #333; 
+    margin-bottom: -5px; /* Connects hat to head */
+    z-index: 4;
+    border-radius: 2px;
+}
+
+/* The top part of the hat */
+.snow-hat::before {
+    content: ''; 
+    width: 40px; 
+    height: 30px; 
+    background: #333; 
+    position: absolute; 
+    bottom: 100%; /* Sits exactly on top of the brim */
+    left: 10px;   /* Centers it (60px width - 40px width) / 2 = 10px */
+    border-radius: 2px 2px 0 0;
+}
+
+
+  /* Hero Text Styling */
+  .typewriter {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    color: #c0392b; /* Christmas Red */
+    margin-bottom: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #c0392b;
+    animation: typewriter 3s steps(20) 1s forwards, blink 1s infinite;
+    width: 0;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+  }
+  
+  @keyframes typewriter {
+    to { width: 100%; }
+  }
+  
+  @keyframes blink {
+    0%, 50% { border-color: #c0392b; }
+    51%, 100% { border-color: transparent; }
+  }
+  
+  .subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: #0f2e50; /* Dark Night Blue */
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+  
+  /* Replaced floating hearts with festive elements */
+  .floating-elements {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 40px 0;
+    opacity: 0;
+    animation: fadeInUp 1s ease 3.5s forwards;
+  }
+  
+  .float-el {
+    font-size: 2.2rem;
+    animation: bounce 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+  }
+  /* Staggered bounce delays */
+  .float-el:nth-child(1) { animation-delay: 0s; }
+  .float-el:nth-child(2) { animation-delay: 0.2s; }
+  .float-el:nth-child(3) { animation-delay: 0.4s; }
+  .float-el:nth-child(4) { animation-delay: 0.6s; }
+  .float-el:nth-child(5) { animation-delay: 0.8s; }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px) rotate(5deg); }
+    60% { transform: translateY(-10px) rotate(-5deg); }
+  }
+  
+  .cta-button {
+    background: linear-gradient(45deg, #c0392b, #e74c3c); /* Red/Festive Gradient */
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(192, 57, 43, 0.3);
+    opacity: 0;
+    animation: fadeInUp 1s ease 4.5s forwards;
+    border: 2px solid white;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(192, 57, 43, 0.5);
+    background: linear-gradient(45deg, #a93226, #c0392b);
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeInUp 1s ease 5.5s forwards;
+  }
+  
+  .scroll-arrow {
+    width: 30px;
+    height: 50px;
+    border: 2px solid #0f2e50; /* Dark blue */
+    border-radius: 25px;
+    position: relative;
+  }
+  
+  .scroll-arrow::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #c0392b; /* Red dot */
+    border-radius: 50%;
+    animation: scrollDot 2s ease-in-out infinite;
+  }
+  
+  @keyframes scrollDot {
+    0% { top: 8px; opacity: 1; }
+    100% { top: 32px; opacity: 0; }
+  }
+
+/* ----- NEW SECTION: Santa Arrival ----- */
+.santa-section {
+    position: relative;
+    height: 80vh; /* Tall section */
+    overflow: hidden;
+    background: #0f2e50; /* Fallback color */
+}
+
+/* Night sky gradient background */
+.night-sky-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #020111 0%, #0f2e50 60%, #1a4a7a 100%);
+    z-index: 1;
+}
+
+/* Add some stars using pseudo-element */
+.night-sky-bg::after {
+    content: ' .   . .  .   . . . .   . .  . ';
+    color: white;
+    font-size: 20px;
+    position: absolute; top: 0; left: 0; right: 0;
+    opacity: 0.3;
+    overflow: hidden;
+    letter-spacing: 50px;
+    animation: twinkle 5s infinite alternate;
+}
+@keyframes twinkle { 0% { opacity: 0.2 } 100% { opacity: 0.5 } }
+
+
+.terrace-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Adjust based on your image */
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+}
+
+.terrace-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure terrace covers the bottom */
+    object-position: bottom;
+}
+
+/* Santa Sleigh Animation Container */
+.santa-fly-container {
+    position: absolute;
+    top: 20%;
+    left: -30%; /* Start off-screen left */
+    width: 40%; /* Adjust size of Santa relative to screen */
+    z-index: 3;
+    /* Animation name | duration | timing | delay | iteration | direction | fill-mode */
+    animation: flyAcrossScreen 15s linear infinite;
+}
+
+.santa-sleigh-img {
+    width: 100%;
+    height: auto;
+    /* Add a slight bobbing motion */
+    animation: bobbing 2s ease-in-out infinite alternate;
+}
+
+@keyframes flyAcrossScreen {
+    0% { left: -40%; transform: translateY(0) rotate(-5deg); }
+    100% { left: 110%; transform: translateY(-50px) rotate(5deg); }
+}
+
+@keyframes bobbing {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(20px); }
+}
+
+
+  
+  /* ----- Message Section (Re-themed) ----- */
+  .message-section {
+    padding: 100px 0;
+    /* Festive Night Gradient: Deep blue to rich red to warm gold */
+    background: linear-gradient(135deg, #0f2e50 0%, #c0392b 60%, #d4af37 100%);
+    color: white;
+    position: relative;
+  }
+
+  /* Add a snow overlay on top of the message section boundary */
+  .message-section::before {
+      content: '';
+      position: absolute; top: -20px; left: 0; width: 100%; height: 40px;
+      background: white;
+      clip-path: polygon(0% 50%, 5% 70%, 10% 50%, 15% 80%, 20% 60%, 25% 90%, 30% 60%, 35% 85%, 40% 55%, 45% 75%, 50% 50%, 55% 80%, 60% 60%, 65% 90%, 70% 65%, 75% 85%, 80% 60%, 85% 75%, 90% 55%, 95% 80%, 100% 60%, 100% 0%, 0% 0%);
+      z-index: 5;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .message-card {
+    /* Frosty Glass Effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 60px 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    /* AOS initial state */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+  }
+
+  .message-card.aos-animate {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  
+  .message-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 40px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .message-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+    color: #f0f8ff;
+  }
+  
+  .message-text.fade-in-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .message-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+    color: #d4af37; /* Gold color for signature */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  
+  .message-hearts {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .heart-animation {
+    font-size: 2rem;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+  }
+  .heart-animation:nth-child(2) { animation-delay: 0.3s; }
+  .heart-animation:nth-child(3) { animation-delay: 0.6s; }
+  
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2) rotate(5deg); }
+    50% { transform: scale(1.1) rotate(-5deg); }
+  }
+  
+  /* ----- Footer ----- */
+  .footer {
+    background: #0a1e36; /* Very dark blue */
+    color: #b3e5fc; /* Light blue text */
+    text-align: center;
+    padding: 30px 0;
+    border-top: 3px solid #c0392b;
+  }
+  
+  /* ----- Fade In Animations (General) ----- */
+  .fade-in {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    /* Add delay so they appear after typewriter starts */
+    animation-delay: 2.5s; 
+  }
+
+  /* Helper to stagger standard fade-ins */
+  .fade-in:nth-child(2) { animation-delay: 3s; }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ----- Responsive Design ----- */
+  @media (max-width: 768px) {
+    .hero-content {
+        margin-left: 0; /* Reset margin on mobile */
+        padding-top: 180px; /* Push text down below snowman */
+    }
+
+    .snowman-container {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 80px; /* Position near top on mobile */
+        bottom: auto;
+    }
+    /* Make snowman slightly smaller on mobile */
+    .snowman { transform: scale(0.8); }
+    @keyframes gentleRock {
+        0%, 100% { transform: translateX(-50%) rotate(-2deg) scale(0.8); }
+        50% { transform: translateX(-50%) rotate(2deg) scale(0.8); }
+    }
+
+    .typewriter {
+      white-space: normal;
+      border-right: none;
+      animation: fadeInUp 1s ease forwards 1s; /* Simple fade instead of typewriter on small screens */
+      opacity: 0;
+      width: auto;
+    }
+
+    /* Adjust Santa section height for mobile */
+    .santa-section { height: 60vh; }
+    .santa-fly-container { width: 60%; top: 10%; }
+
+  
+    .message-card {
+      padding: 40px 25px;
+      margin: 0 10px;
+    }
+  
+    .floating-elements {
+      gap: 15px;
+    }
+  
+    .float-el { font-size: 1.8rem; }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-content { padding: 160px 15px 0 15px; }
+    .cta-button { padding: 12px 28px; font-size: 1rem; }
+    .message-title { font-size: 1.8rem; }
+  }
+  /* ----- Gift Section ----- */
+.gift-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #d4af37 0%, #0f2e50 100%);
+    text-align: center;
+}
+
+.gift-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px;
+    border-radius: 30px;
+    display: inline-block;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+    max-width: 90%;
+}
+
+.gift-title {
+    font-family: 'Dancing Script', cursive;
+    color: #c0392b;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+/* ----- CSS Only Gift Box Button ----- */
+.gift-box-btn {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    animation: bounceGift 2s infinite;
+    transition: transform 0.3s;
+}
+
+.gift-box-btn:hover {
+    animation: none;
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* The Box Body */
+.gift-body {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 80px;
+    height: 60px;
+    background: #c0392b; /* Red */
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+/* The Vertical Ribbon */
+.gift-body::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 100%;
+    background: #ffd700; /* Gold */
+}
+
+/* The Lid */
+.gift-lid {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100px;
+    height: 25px;
+    background: #d32f2f; /* Darker Red */
+    border-radius: 5px;
+    z-index: 2;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+/* The Lid Ribbon */
+.gift-lid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 100%;
+    background: #ffd700;
+}
+
+/* The Bow */
+.gift-bow {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    z-index: 1;
+}
+.gift-bow::before, .gift-bow::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #ffd700;
+    border-radius: 50%;
+    top: 0;
+}
+.gift-bow::before { left: -10px; transform: rotate(-15deg); }
+.gift-bow::after { right: -10px; transform: rotate(15deg); }
+
+@keyframes bounceGift {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+/* ----- Hidden Overlay (The New Page) ----- */
+.overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: translateY(50px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.overlay.show .overlay-content {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #888;
+}
+
+.overlay-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #c0392b;
+    margin-bottom: 20px;
+}
+
+.overlay-text p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.final-line {
+    font-weight: bold;
+    color: #d4af37;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    margin-top: 20px;
+}
